@@ -11,9 +11,7 @@ import pages.HomePage;
 import pages.LoginPage;
 import utils.Action;
 import utils.Driver;
-
 import java.time.Duration;
-
 import static org.junit.Assert.assertEquals;
 
 public class LoginSteps {
@@ -25,10 +23,7 @@ public class LoginSteps {
             .withTimeout(Duration.ofSeconds(10))
             .pollingEvery(Duration.ofSeconds(1));
 
-       String trueEmail="furkanakbabadev@gmail.com";
-       String truePassword="472722.Aq";
-       String falseEmail="furkanakbaba123321@gmail.com";
-       String falsePassword="furkanakbaba123321.a";
+
     @Given("Kullanıcı giriş sayfasını açar")
     public void kullanıcı_giriş_sayfasını_açar()throws Exception{
         driverInstance.initializeDriver();
@@ -47,16 +42,16 @@ public class LoginSteps {
     }
 
     @When("Kullanıcı yanlış bir e-posta {string} girer")
-    public void kullanıcı_yanlış_bir_e_posta_girer(String string) {
+    public void kullanıcı_yanlış_bir_e_posta_girer(String yanlışEposta) {
 
 //        wait.until(driver -> loginPage.isLoadedEmailElement());
-        loginPage.myEmailFieldSend(falseEmail);
+        loginPage.myEmailFieldSend(yanlışEposta);
 
     }
     @When("Kullanıcı geçerli bir şifre {string} girer")
-    public void kullanıcı_geçerli_bir_şifre_girer(String string) {
+    public void kullanıcı_geçerli_bir_şifre_girer(String doğruŞifre) {
 
-     loginPage.myPasswordFieldSend(truePassword);
+        loginPage.myPasswordFieldSend(doğruŞifre);
     }
     @When("Kullanıcı giriş butonuna tıklar")
     public void kullanıcı_giriş_butonuna_tıklar() throws Exception {
@@ -72,14 +67,14 @@ public class LoginSteps {
 
     }
     @When("Kullanıcı geçerli bir e-posta {string} girer")
-    public void kullanıcı_geçerli_bir_e_posta_girer(String string)throws Exception {
-     Thread.sleep(3000);
-     loginPage.falseMyEmailFieldSend(trueEmail);
+    public void kullanıcı_geçerli_bir_e_posta_girer(String doğruEposta)throws Exception {
+        Thread.sleep(3000);
+        loginPage.falseMyEmailFieldSend(doğruEposta);
     }
     @When("Kullanıcı yanlış bir şifre {string} girer")
-    public void kullanıcı_yanlış_bir_şifre_girer(String string)throws Exception {
+    public void kullanıcı_yanlış_bir_şifre_girer(String yanlışŞifre)throws Exception {
        Thread.sleep(3000);
-       loginPage.truePasswordFieldSend(falsePassword);
+        loginPage.truePasswordFieldSend(yanlışŞifre);
         loginPage.loginButtonClick();
 
     }
@@ -91,17 +86,16 @@ public class LoginSteps {
         loginPage.isLoadedOkElement();
         loginPage.okButtonClick();
     }
-    @When("Kullanıcı geçerli bir e-posta {string} girer ve geçerli bir şifre girer")
-    public void kullanıcı_geçerli_bir_e_posta_girer_ve_geçerli_bir_şifre_girer(String string) {
-        loginPage.trueEmailFieldSend(trueEmail);
-        loginPage.falseMyPasswordFieldSend(truePassword);
-
-
+    @When("Kullanıcı geçerli bir e-posta {string} girer ve geçerli bir şifre {string} girer")
+    public void kullanıcı_geçerli_bir_e_posta_girer_ve_geçerli_bir_şifre_girer(String doğruEposta, String doğruŞifre) {
+        loginPage.trueEmailFieldSend(doğruEposta);
+        loginPage.falseMyPasswordFieldSend(doğruŞifre);
     }
     @Then("kullanıcı giriş yapar")
     public void kullanıcı_giriş_yapar() throws Exception {
         loginPage.loginButtonClick();
         Thread.sleep(5000);
     }
+
 
 }
