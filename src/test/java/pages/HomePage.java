@@ -24,6 +24,7 @@ public class HomePage {
     @AndroidFindBy(id="com.android.permissioncontroller:id/permission_allow_button")
     private WebElement permissionButton;
 
+
     public void goToHomePage() {
         permissionButton.click();
     }

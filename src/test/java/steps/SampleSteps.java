@@ -19,7 +19,7 @@ import java.time.Duration;
 public class SampleSteps {
    private Driver driverInstance=new Driver();
 
-    Action action =new Action();
+   Action action =new Action();
    private HomePage homePage;
    private CategoryPage categoryPage;
    private FilterPage filterPage;
